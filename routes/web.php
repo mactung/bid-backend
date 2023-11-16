@@ -17,11 +17,12 @@ $router->get('/', function () use ($router) {
     return 'hello';
 });
 $router->post('/upload', 'ImageController@upload');
+$router->post('/s3-upload', 'ImageController@s3Upload');
 // product routes
 $router->group(['prefix' => '/product'], function () use ($router) {
-    $router->get('', 'ProductController@all');
+    $router->get('', 'ProductController@getAll');
     $router->get('/{id}', 'ProductController@get');
-    $router->post('', 'ProductController@add');
+    $router->post('', 'ProductController@addProduct');
     $router->put('/{id}', 'ProductController@put');
     $router->delete('/{id}', 'ProductController@remove');
 
@@ -64,5 +65,19 @@ $router->group([
     'prefix' => 'shop'
 ], function ($router) {
     $router->get('/{sellerId}', ['uses' => 'ShopController@getShopProducts']);
+});
+// cart routes
+$router->group([
+    'prefix' => 'cart'
+], function ($router) {
+    $router->post('', ['uses' => 'CartController@create']);
+    $router->get('items/{token}', ['uses' => 'CartController@getCartItems']);
+    $router->post('items/{token}', ['uses' => 'CartController@addItem']);
+});
+//cart item routes
+$router->group([
+    'prefix' => 'cart-item'
+], function ($router) {
+   
 });
 

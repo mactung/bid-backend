@@ -63,6 +63,7 @@ $app->configure('app');
 $app->configure('jwt');
 $app->configure('auth');
 $app->configure('filesystems');
+$app->configure('s3');
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(App\Repositories\RepositoryServiceProvider::class);
+// $app->register(CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
