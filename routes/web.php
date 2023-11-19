@@ -20,11 +20,13 @@ $router->post('/upload', 'ImageController@upload');
 $router->post('/s3-upload', 'ImageController@s3Upload');
 // product routes
 $router->group(['prefix' => '/product'], function () use ($router) {
-    $router->get('', 'ProductController@getAll');
+    $router->get('/seller', 'ProductController@getAll');
+    $router->get('', 'ProductController@all');
     $router->get('/{id}', 'ProductController@get');
     $router->post('', 'ProductController@addProduct');
     $router->put('/{id}', 'ProductController@put');
-    $router->delete('/{id}', 'ProductController@remove');
+    $router->put('/seller/{id}', 'ProductController@updateProduct');
+    $router->delete('/{id}', 'ProductController@destroyProduct');
 
 });
 // user routes
